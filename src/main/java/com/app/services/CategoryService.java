@@ -34,6 +34,6 @@ public class CategoryService {
     }
 
     public Page<CategoryResponse> getResponsesByTitle(String title, Pageable pageable) {
-        return categoryRepository.findByTitle(title, pageable);
+        return categoryRepository.findByTitle(title.toLowerCase(), pageable);
     }
 }
