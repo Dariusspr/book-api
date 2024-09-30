@@ -5,6 +5,7 @@ import com.app.dtos.responses.BookResponse;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class BookMapper {
@@ -21,10 +22,14 @@ public class BookMapper {
         double averageRating = ((BigDecimal)row[7]).doubleValue();  // Average rating
         long reviewCount = (Long) row[8];                           // Review count
 
-        List<AuthorResponse> authors = Arrays.stream(authorsRaw.split(": "))
-                .map(AuthorMapper::toResponse)
-                .toList();
-
+        List<AuthorResponse> authors;
+        if (authorsRaw != null) {
+            authors = Arrays.stream(authorsRaw.split("#"))
+                    .map(AuthorMapper::toResponse)
+                    .toList();
+        } else {
+            authors = null;
+        }
         return new BookResponse(
                 isbn, CategoryMapper.toResponse(categoryId, categoryTitle), title, authors, year,
                 pages, averageRating, reviewCount);

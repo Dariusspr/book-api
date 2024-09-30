@@ -18,10 +18,10 @@ public interface BookRepository extends JpaRepository<Book, String> {
                    c.title,
                    c.id,
                    b.title,
-                   GROUP_CONCAT(DISTINCT CONCAT(a.id, ',', a.first_name, ',', a.last_name) SEPARATOR ': ') AS authors,
+                   GROUP_CONCAT(DISTINCT CONCAT(a.id, ',', a.first_name, ',', a.last_name) SEPARATOR '#') AS authors,
                    b.published_year,
                    b.pages,
-                   AVG(r.rating) AS average_rating,
+                   AVG(COALESCE(r.rating, 0)) AS average_rating,
                    COUNT(r.id) AS review_count
             FROM book b
             LEFT JOIN category c ON b.category_id = c.id
@@ -63,10 +63,10 @@ public interface BookRepository extends JpaRepository<Book, String> {
                    c.title,
                    c.id,
                    b.title,
-                   GROUP_CONCAT(DISTINCT CONCAT(a.id, ',', a.first_name, ',', a.last_name) SEPARATOR ': ') AS authors,
+                   GROUP_CONCAT(DISTINCT CONCAT(a.id, ',', a.first_name, ',', a.last_name) SEPARATOR ';') AS authors,
                    b.published_year,
                    b.pages,
-                   AVG(r.rating) AS average_rating,
+                   AVG(COALESCE(r.rating, 0)) AS average_rating,
                    COUNT(r.id) AS review_count
             FROM book b
             LEFT JOIN category c
@@ -80,5 +80,5 @@ public interface BookRepository extends JpaRepository<Book, String> {
             WHERE b.isbn = :isbn
             GROUP BY b.isbn, c.id, c.title, b.title, b.published_year, b.pages
             """, nativeQuery = true)
-    Optional<Object[]> findResponseByISBN(@Param("isbn") String isbn);
+    Object[] findResponseByISBN(@Param("isbn") String isbn);
 }

@@ -13,7 +13,7 @@ public class Book{
     @Column(name = "isbn")
     private String isbn;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "category_id")
     private Category category;
 

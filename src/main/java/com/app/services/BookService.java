@@ -45,13 +45,15 @@ public class BookService {
 
 
     public BookResponse getResponseByISBN(String isbn) {
-        Optional<Object[]> optionalRow = bookRepository.findResponseByISBN(isbn);
-
+        Object[] result = bookRepository.findResponseByISBN(isbn);
+        if (result.length == 0) {
+            throw new BookNotFoundException();
+        }
 
         // Returns Object[][] - multiple rows, get first row
-        Object[] row = (Object[]) optionalRow.orElseThrow(BookNotFoundException::new)[0];
-        if (row.length == 0) {
-            throw new BookNotFoundException();
+        Object[] row = (Object[]) result[0];
+        if (row.length != 9) {
+            throw new IllegalStateException();
         }
         return BookMapper.toResponse(row);
     }

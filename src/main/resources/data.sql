@@ -8,9 +8,7 @@ VALUES (1, 'Fiction'),
        (7, 'Self-Help'),
        (8, 'Historical Fiction'),
        (9, 'Romance'),
-       (10, 'Thriller'),
-       (11, 'Graphic Novels'),
-       (12, 'Poetry');
+       (10, 'Thriller');
 
 INSERT INTO author (id, first_name, last_name)
 VALUES (1, 'John', 'Doe'),
@@ -37,8 +35,9 @@ VALUES ('9783161484100', 1, 'The Great Adventure', 2021, 350),
        ('9780987654325', 8, 'Echoes of the Past', 2022, 300),
        ('9789876543210', 9, 'Love in the Time of Chaos', 2023, 320),
        ('9786543210987', 10, 'Chasing Shadows', 1999, 250),
-       ('9784321098765', 11, 'The Art of Storytelling', 2021, 180),
-       ('9783210987654', 12, 'Words of Wisdom', 1954, 140);
+       ('9784321098765', 7, 'The Art of Storytelling', 2021, 180),
+       ('9783210987654', 5, 'Words of Wisdom', 1954, 140),
+       ('1283210987654', 6, 'No author.', 1900, 10);
 
 INSERT INTO book_author (book_isbn, author_id)
 VALUES ('9783161484100', 1),
