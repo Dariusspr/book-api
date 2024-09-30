@@ -12,7 +12,7 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
     @Query("""
             SELECT new com.app.dtos.responses.AuthorResponse(a.id, a.firstName, a.lastName) 
             FROM Author a 
-            WHERE CONCAT(a.firstName, ' ', a.lastName) 
+            WHERE LOWER(CONCAT(a.firstName, ' ', a.lastName))
             LIKE %:name%""")
     Page<AuthorResponse> findByName(@Param("name") String name, Pageable pageable);
 
