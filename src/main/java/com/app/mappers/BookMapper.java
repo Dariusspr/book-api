@@ -31,7 +31,7 @@ public class BookMapper {
             authors = null;
         }
         return new BookResponse(
-                isbn, CategoryMapper.toResponse(categoryId, categoryTitle), title, authors, year,
+                isbn, title, CategoryMapper.toResponse(categoryId, categoryTitle), authors, year,
                 pages, averageRating, reviewCount);
     }
 }

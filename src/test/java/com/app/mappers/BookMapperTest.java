@@ -30,16 +30,16 @@ public class BookMapperTest {
 
 
     private final BookResponse expectedWithSingleAuthor = new BookResponse(isbn,
-            new CategoryResponse(categoryId, categoryTitle),
             title,
+            new CategoryResponse(categoryId, categoryTitle),
             List.of(new AuthorResponse(author1Id, author1FirstName, author1LastName)),
             year,
             pages,
             averageRating.doubleValue(),
             reviewCount);
     private final BookResponse ExpectedWithMultipleAuthors = new BookResponse(isbn,
-            new CategoryResponse(categoryId, categoryTitle),
             title,
+            new CategoryResponse(categoryId, categoryTitle),
             List.of(new AuthorResponse(author1Id, author1FirstName, author1LastName),
                     new AuthorResponse(author2Id, author2FirstName, author2LastName),
                     new AuthorResponse(author1Id, author1FirstName, author1LastName)),
@@ -48,8 +48,8 @@ public class BookMapperTest {
             averageRating.doubleValue(),
             reviewCount);
     private final BookResponse expectedWithNoAuthors = new BookResponse(isbn,
-            new CategoryResponse(categoryId, categoryTitle),
             title,
+            new CategoryResponse(categoryId, categoryTitle),
             null,
             year,
             pages,

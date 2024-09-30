@@ -30,6 +30,7 @@ public class AuthorController {
 
     @GetMapping("/{name}/name")
     public ResponseEntity<Page<AuthorResponse>> getByName(@PathVariable String name, Pageable pageable) {
+        System.out.println(name + " " + pageable.toString());
         return ResponseEntity.ok(authorService.getResponseByName(name, pageable));
     }
 
