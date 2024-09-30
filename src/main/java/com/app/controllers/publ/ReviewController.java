@@ -4,10 +4,10 @@ import com.app.constants.EndpointConstants;
 import com.app.dtos.requests.ReviewRequest;
 import com.app.dtos.responses.ReviewResponse;
 import com.app.services.ReviewService;
-import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController("publReviewController")
@@ -34,7 +34,7 @@ public class ReviewController {
     }
 
     @PostMapping
-    public ResponseEntity<ReviewResponse> create(@RequestBody @Valid ReviewRequest request) {
+    public ResponseEntity<ReviewResponse> create(@RequestBody @Validated ReviewRequest request) {
         var review = reviewService.create(request);
         return ResponseEntity.ok(review);
     }
