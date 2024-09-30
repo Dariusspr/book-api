@@ -34,6 +34,6 @@ public class AuthorService {
     }
 
     public Page<AuthorResponse> getResponseByName(String name, Pageable pageable) {
-        return authorRepository.findByName(name, pageable);
+        return authorRepository.findByName(name.toLowerCase(), pageable);
     }
 }
