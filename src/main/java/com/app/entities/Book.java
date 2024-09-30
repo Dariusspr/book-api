@@ -25,7 +25,7 @@ public class Book{
     )
     private Set<Author> authors = new HashSet<>();
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", orphanRemoval = true)
     private Set<Review> reviews = new HashSet<>();
 
     @Column(name = "title", nullable = false)
@@ -47,6 +47,10 @@ public class Book{
         this.title = title;
         this.year = year;
         this.pages = pages;
+    }
+
+    public void addReview(Review review) {
+        reviews.add(review);
     }
 
     public String getIsbn() {

@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 public class Review{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne
@@ -24,6 +26,7 @@ public class Review{
     }
 
     public Review(Book book, int rating, String comment) {
+        book.addReview(this);
         this.book = book;
         this.rating = rating;
         this.comment = comment;
